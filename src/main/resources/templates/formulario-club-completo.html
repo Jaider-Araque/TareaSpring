@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Club Completo - Sistema JPA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">⚽ Sistema Clubes</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/clubes/vista">🏆 Clubes</a>
+                <a class="nav-link" href="/">🏠 Inicio</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="form-container">
+            <h1 class="text-center mb-4">➕ Crear Club Completo</h1>
+            
+            <form th:action="@{/clubes/crear-completo}" method="post" th:object="${club}">
+                
+                <!-- INFORMACIÓN BÁSICA -->
+                <div class="mb-4">
+                    <h3 class="section-title">📝 Información del Club</h3>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nombre del Club:</label>
+                        <input type="text" class="form-control" 
+                               th:field="*{nombre}" 
+                               placeholder="Ej: Millonarios FC" 
+                               required
+                               autofocus>
+                    </div>
+                </div>
+
+                <!-- ENTRENADOR -->
+                <div class="mb-4">
+                    <h3 class="section-title">👨‍🏫 Seleccionar Entrenador</h3>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Entrenador:</label>
+                        <select class="form-select" th:field="*{entrenador}">
+                            <option value="">-- Seleccionar Entrenador --</option>
+                            <option th:each="entrenador : ${entrenadores}" 
+                                    th:value="${entrenador.id}"
+                                    th:text="${entrenador.nombre + ' ' + entrenador.apellido + ' (' + entrenador.nacionalidad + ')'}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- ASOCIACIÓN -->
+                <div class="mb-4">
+                    <h3 class="section-title">🏛️ Seleccionar Asociación</h3>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Asociación:</label>
+                        <select class="form-select" th:field="*{asociacion}">
+                            <option value="">-- Seleccionar Asociación --</option>
+                            <option th:each="asociacion : ${asociaciones}" 
+                                    th:value="${asociacion.id}"
+                                    th:text="${asociacion.nombre + ' (' + asociacion.siglas + ')'}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- JUGADORES -->
+                <div class="mb-4">
+                    <h3 class="section-title">👥 Seleccionar Jugadores</h3>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Jugadores (selección múltiple):</label>
+                        <select class="form-select" multiple th:field="*{jugadoresSeleccionados}" size="6">
+                            <option th:each="jugador : ${jugadores}" 
+                                    th:value="${jugador.id}"
+                                    th:text="${jugador.nombre + ' ' + jugador.apellido + ' - ' + jugador.posicion + ' (#' + jugador.numero + ')'}">
+                            </option>
+                        </select>
+                        <div class="form-text">Mantén presionado Ctrl (Windows) o Cmd (Mac) para seleccionar múltiples jugadores</div>
+                    </div>
+                </div>
+
+                <!-- COMPETICIONES -->
+                <div class="mb-4">
+                    <h3 class="section-title">🏆 Seleccionar Competiciones</h3>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Competiciones (selección múltiple):</label>
+                        <select class="form-select" multiple th:field="*{competicionesSeleccionadas}" size="4">
+                            <option th:each="competicion : ${competiciones}" 
+                                    th:value="${competicion.id}"
+                                    th:text="${competicion.nombre + ' - Premio: $' + #numbers.formatInteger(competicion.montoPremio, 1, 'DEFAULT')}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>💡 Información:</strong> 
+                    <ul class="mb-0 mt-2">
+                        <li>Puedes seleccionar múltiples jugadores y competiciones</li>
+                        <li>Las relaciones se guardarán automáticamente</li>
+                        <li>Serás redirigido a la lista de clubes después de guardar</li>
+                    </ul>
+                </div>
+                
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        💾 Guardar Club Completo
+                    </button>
+                    <a href="/clubes/vista" class="btn btn-secondary btn-lg">
+                        ↩️ Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
