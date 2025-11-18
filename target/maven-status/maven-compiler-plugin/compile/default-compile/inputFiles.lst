@@ -1,0 +1,14 @@
+C:\springproyectos\spring\src\main\java\com\spring\app\Application.java
+C:\springproyectos\spring\src\main\java\com\spring\app\config\DataLoader.java
+C:\springproyectos\spring\src\main\java\com\spring\app\controller\ClubController.java
+C:\springproyectos\spring\src\main\java\com\spring\app\controller\PruebaController.java
+C:\springproyectos\spring\src\main\java\com\spring\app\entidades\Asociacion.java
+C:\springproyectos\spring\src\main\java\com\spring\app\entidades\Club.java
+C:\springproyectos\spring\src\main\java\com\spring\app\entidades\Competicion.java
+C:\springproyectos\spring\src\main\java\com\spring\app\entidades\Entrenador.java
+C:\springproyectos\spring\src\main\java\com\spring\app\entidades\Jugador.java
+C:\springproyectos\spring\src\main\java\com\spring\app\repositorio\AsociacionRepository.java
+C:\springproyectos\spring\src\main\java\com\spring\app\repositorio\ClubRepository.java
+C:\springproyectos\spring\src\main\java\com\spring\app\repositorio\CompeticionRepository.java
+C:\springproyectos\spring\src\main\java\com\spring\app\repositorio\EntrenadorRepository.java
+C:\springproyectos\spring\src\main\java\com\spring\app\repositorio\JugadorRepository.java

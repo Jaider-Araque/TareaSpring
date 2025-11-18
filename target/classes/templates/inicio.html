@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Clubes - Spring Boot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-group-custom {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">⚽ Sistema de Clubes</h1>
+            <p class="lead fs-4">Relaciones JPA con Spring Boot</p>
+            <p class="mb-4">Demostración completa de relaciones @OneToOne, @OneToMany, @ManyToOne, @ManyToMany</p>
+            
+            <!-- BOTONES PRINCIPALES - MODIFICADO -->
+            <div class="btn-group-custom">
+                <a href="/clubes/vista" class="btn btn-light btn-lg">🏆 Ver Clubes</a>
+                <a href="/todas-tablas" class="btn btn-light btn-lg">📊 Todas las Tablas</a>
+                <a href="/h2-console" target="_blank" class="btn btn-outline-light btn-lg">🗄️ Base de Datos</a>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN - NUEVOS -->
+            <div class="action-buttons">
+                <a href="/clubes/nuevo" class="btn btn-success btn-lg">➕ Crear Club</a>
+                <a href="/clubes/vista" class="btn btn-info btn-lg">✏️ Gestionar Clubes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container">
+        <div class="row g-4">
+            <!-- Entidades -->
+            <div class="col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🏗️ Entidades Implementadas</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Club (Entidad principal)</li>
+                            <li class="list-group-item">Entrenador</li>
+                            <li class="list-group-item">Jugador</li>
+                            <li class="list-group-item">Asociación</li>
+                            <li class="list-group-item">Competición</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relaciones -->
+            <div class="col-md-6">
+                <div class="card feature-card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🔗 Relaciones JPA</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">@OneToOne (LAZY) - Club → Entrenador</li>
+                            <li class="list-group-item">@ManyToOne - Club → Asociación</li>
+                            <li class="list-group-item">@OneToMany (EAGER) - Club → Jugadores</li>
+                            <li class="list-group-item">@ManyToMany - Club → Competiciones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- URLs Disponibles -->
+            <div class="col-12">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title">🚀 URLs Disponibles</h5>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>📊 Visualización</h6>
+                                <code>GET /</code> - Página principal<br>
+                                <code>GET /clubes/vista</code> - Vista de clubes<br>
+                                <code>GET /todas-tablas</code> - Todas las tablas<br>
+                                <code>GET /entrenadores</code> - Solo entrenadores<br>
+                                <code>GET /jugadores</code> - Solo jugadores<br>
+                                <code>GET /asociaciones</code> - Solo asociaciones<br>
+                                <code>GET /competiciones</code> - Solo competiciones
+                            </div>
+                            <div class="col-md-4">
+                                <h6>⚙️ Gestión</h6>
+                                <code>GET /clubes/nuevo</code> - Crear club<br>
+                                <code>POST /clubes/crear</code> - Guardar club<br>
+                                <code>GET /clubes/editar/{id}</code> - Editar club<br>
+                                <code>POST /clubes/actualizar/{id}</code> - Actualizar club<br>
+                                <code>GET /clubes/eliminar/{id}</code> - Eliminar club
+                            </div>
+                            <div class="col-md-4">
+                                <h6>🔧 Sistema</h6>
+                                <code>GET /clubes</code> - APIs JSON<br>
+                                <code>GET /clubes/{id}</code> - API club específico<br>
+                                <code>POST /clubes</code> - Crear (JSON)<br>
+                                <code>PUT /clubes/{id}</code> - Actualizar (JSON)<br>
+                                <code>DELETE /clubes/{id}</code> - Eliminar (JSON)<br>
+                                <code>GET /h2-console</code> - Base de datos
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operaciones CRUD -->
+            <div class="col-12">
+                <div class="card feature-card">
+                    <div class="card-body">
+                        <h5 class="card-title">🛠️ Operaciones Disponibles</h5>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <h4>➕</h4>
+                                    <h6>Crear Clubes</h6>
+                                    <p class="small">Agregar nuevos clubes al sistema</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <h4>👁️</h4>
+                                    <h6>Visualizar Datos</h6>
+                                    <p class="small">Ver todas las entidades y relaciones</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <h4>✏️</h4>
+                                    <h6>Gestionar Clubes</h6>
+                                    <p class="small">Editar y eliminar clubes existentes</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="p-3">
+                                    <h4>📊</h4>
+                                    <h6>APIs REST</h6>
+                                    <p class="small">Acceso programático vía JSON</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 py-4 text-muted">
+        <p>Sistema desarrollado con Spring Boot + JPA + H2 + Thymeleaf</p>
+    </footer>
+</body>
+</html>

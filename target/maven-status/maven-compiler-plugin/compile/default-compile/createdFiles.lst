@@ -1,0 +1,14 @@
+com\spring\app\controller\ClubController.class
+com\spring\app\config\DataLoader.class
+com\spring\app\entidades\Entrenador.class
+com\spring\app\repositorio\CompeticionRepository.class
+com\spring\app\controller\PruebaController.class
+com\spring\app\entidades\Competicion.class
+com\spring\app\Application.class
+com\spring\app\repositorio\JugadorRepository.class
+com\spring\app\repositorio\EntrenadorRepository.class
+com\spring\app\repositorio\AsociacionRepository.class
+com\spring\app\entidades\Jugador.class
+com\spring\app\entidades\Asociacion.class
+com\spring\app\repositorio\ClubRepository.class
+com\spring\app\entidades\Club.class
